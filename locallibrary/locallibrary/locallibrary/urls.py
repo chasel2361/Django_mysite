@@ -22,16 +22,10 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
-
-# Use include() to add paths from the catalog application
-urlpatterns += [
+    # Use include() to add paths from the catalog application
     path('catalog/', include('catalog.urls')),
-]
-
-# Add URL maps to redirect the base URL to our application
-urlpatterns += [
-    path('', RedirectView.as_view(url='/catalog/')),
+    # Add URL maps to redirect the base URL to our application
+    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
 ]
 
 # Use static() to add url mapping to serve static files during development (only)
